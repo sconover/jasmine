@@ -621,8 +621,6 @@ jasmine.init = function(target, userOptions) {
   target[options.terms.waits] = waits;
   target[options.terms.waitsFor] = waitsFor;
   
-  jasmine.currentInitOptions = options; //ugh.  these settings need to be available later when matchers.js is loaded.
-  
   return jasmine;
 };
 
