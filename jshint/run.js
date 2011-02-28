@@ -50,7 +50,8 @@ function removeJasmineUndefinedErrors(errors) {
           errors[i].raw && 
           errors[i].evidence &&
           ( errors[i].evidence.match(/jasmine\.undefined/) ||
-            errors[i].evidence.match(/diz be undefined yo/) )
+            errors[i].evidence.match(/diz be undefined yo/) ||
+            (errors[i].raw == "Bad escapement." && errors[i].evidence.match(/033/)) )
        )) keepErrors.push(errors[i]);
   }
   return keepErrors;  

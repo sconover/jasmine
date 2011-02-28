@@ -1,6 +1,5 @@
 var fs = require('fs');
 var sys = require('sys');
-var path = require('path');
 
 var jsdom  = require("jsdom").jsdom;
     
