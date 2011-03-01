@@ -46,11 +46,14 @@ var jasmineGlobals = {};
 function removeJasmineUndefinedErrors(errors) {
   var keepErrors = [];
   for(var i=0; i<errors.length; i++) {
-    if (!(errors[i] &&
-          errors[i].raw && 
-          errors[i].evidence &&
-          ( errors[i].evidence.match(/jasmine\.undefined/) ||
-            errors[i].evidence.match(/diz be undefined yo/) )
+    var error = errors[i];
+    if (!(error &&
+          error.raw && 
+          error.evidence &&
+          ( error.evidence.match(/jasmine\.undefined/) ||
+            error.evidence.match(/diz be undefined yo/) ||
+            (error.evidence.match(/033/) && //legit ascii escapes
+             error.raw.match(/Bad escapement/)) )
        )) keepErrors.push(errors[i]);
   }
   return keepErrors;  
