@@ -40,14 +40,14 @@ delete global.window;
 
 function noop(){}
 
-jasmine.executeSpecs = function(specs, done, isVerbose, showColors){
+jasmine.executeSpecs = function(specs, done){
   for (var i = 0, len = specs.length; i < len; ++i){
     var filename = specs[i];
     require(filename.replace(/\.\w+$/, ""));
   }
 
   var jasmineEnv = jasmine.getEnv();
-  jasmineEnv.reporter = new jasmine.TrivialConsoleReporter(sys.print)
+  jasmineEnv.reporter = new jasmine.TrivialConsoleReporter(sys.print, done)
   jasmineEnv.execute();
 };
 
@@ -124,10 +124,10 @@ process.argv.forEach(function(arg){
 
 var specs = jasmine.getAllSpecFiles(__dirname + '/suites', new RegExp("^.+\.(js|coffee)$"));
 
-jasmine.executeSpecs(specs, function(runner, log){
+jasmine.executeSpecs(specs, function(runner){
   if (runner.results().failedCount == 0) {
     process.exit(0);
   } else {
     process.exit(1);
   }
-}, isVerbose, showColors);
+});
